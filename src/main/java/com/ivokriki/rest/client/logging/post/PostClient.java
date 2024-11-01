@@ -8,6 +8,8 @@ import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Component
@@ -32,8 +34,9 @@ public class PostClient {
 
     }
 
-    private void logResponse(HttpRequest request, ClientHttpResponse response){
-        log.info("Response {}", response);
+    private void logResponse(HttpRequest request, ClientHttpResponse response) throws IOException {
+        byte[] responseBody = response.getBody().readAllBytes();
+        log.info("Response {}", new String(responseBody, StandardCharsets.UTF_8));
     }
 
     public List<Post> findAll(){
