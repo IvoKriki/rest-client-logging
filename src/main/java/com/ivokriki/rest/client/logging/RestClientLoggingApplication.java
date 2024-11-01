@@ -8,7 +8,7 @@ public class RestClientLoggingApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RestClientLoggingApplication.class, args);
-		
+
 	}
 
 }
